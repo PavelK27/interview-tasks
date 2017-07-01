@@ -82,13 +82,44 @@ class Goat extends Animal {
 	}
 }
 
-// Generate 10,000 of goats and save their ids into an array.
-$goats = array();
+/**
+ * Sheep class.
+ */
+class Sheep extends Animal {
 
-for ( $i = 1; $i <= 10000; $i++ ) {
-	$goat = new Goat();
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+
+		// Initiate parent class and generate animal id.
+		parent::__construct();
+
+		// Set storage to sheep.txt
+		$this->ids_storage = 'sheep.txt';
+
+		// Save animal id to storage.
+		$this->save_id_to_storage();
+	}
+}
+
+// Generate 100 of goats and 100 of sheeps and save their ids into an respective arrays.
+$goats  = array();
+$sheeps = array();
+
+for ( $i = 1; $i <= 100; $i++ ) {
+
+	// Generate a goat.
+	$goat  = new Goat();
 
 	if ( property_exists( $goat, 'animal_id' ) ) {
 		$goats[] = $goat->animal_id;
+	}
+
+	// Generate a sheep.
+	$sheep = new Sheep();
+
+	if ( property_exists( $sheep, 'animal_id' ) ) {
+		$sheeps[] = $sheep->animal_id;
 	}
 }
