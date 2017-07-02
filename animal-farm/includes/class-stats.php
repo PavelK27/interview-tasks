@@ -55,4 +55,25 @@
 			'sheeps' => max( $sheeps )
 		);
 	}
+
+	/**
+	* Finds average sum for goats and sheeps ids.
+	*
+	* @param array Goats ids.
+	* @param array Sheeps ids.
+	*
+	* @return array An array with average sum for goats and sheeps.
+	*/
+	public function find_average_sum( $goats, $sheeps ) {
+
+		// Bail early if no valid data.
+		if ( empty( $goats ) || empty( $sheeps ) || ! is_array( $goats ) || ! is_array( $sheeps ) ) {
+			return false;
+		}
+
+		return array(
+			'goats'  => array_sum( $goats ) / count( $goats ),
+			'sheeps' => array_sum( $sheeps ) / count( $sheeps )
+		);
+	}
  }

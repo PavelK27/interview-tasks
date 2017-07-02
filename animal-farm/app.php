@@ -105,9 +105,18 @@ class App {
 		$max_ids = $stats->find_biggest_numbers( $animals['goats'], $animals['sheeps'] );
 
 		// Display message about max ids.
-		if ( ! empty( $max_ids ) && is_array( $max_ids ) ) { }
+		if ( ! empty( $max_ids ) && is_array( $max_ids ) ) {
 			echo "The maximum id number for goats is ${max_ids['goats']} and for sheeps is ${max_ids['sheeps']}.\n";
 		}
+
+		// Find average sum for ids.
+		$average_sum = $stats->find_average_sum( $animals['goats'], $animals['sheeps'] );
+
+		// Display message about average sum.
+		if ( ! empty( $average_sum ) && is_array( $average_sum ) ) {
+			echo "The average sum for goats is ${average_sum['goats']} and for sheeps is ${average_sum['sheeps']}.\n";
+		}
+	}
 
 }
 
