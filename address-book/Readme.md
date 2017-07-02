@@ -34,7 +34,7 @@ Build a mini address book to showcase your JavaScript and DOM talents.
 
 ## Evaluation Criteria:
 
-- Use of <select multiple> html tag/element for displaying contacts
+- Use of `<select multiple>` html tag/element for displaying contacts
 
 - Use of objects, ie: some sort of contact object (prototype/function)
 
