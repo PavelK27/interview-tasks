@@ -91,13 +91,23 @@ class App {
 		// Find equals.
 		$soulmates = $stats->find_equals( $animals['goats'], $animals['sheeps'] );
 
+		// Display statistics heading.
+		echo "Animal Farm Statistics \n";
+
 		// Display message about soulmates.
 		if ( ! empty( $soulmates ) ) {
-			echo 'The total number of matches between goats and sheeps: ' . count( $soulmates );
+			echo 'The total number of matches between goats and sheeps: ' . count( $soulmates ) . "\n";
 		} else {
-			echo 'There were no matches!';
+			echo 'There were no matches in id numbers for sheeps and goats!' . "\n";
 		}
-	}
+
+		// Find biggest id numbers.
+		$max_ids = $stats->find_biggest_numbers( $animals['goats'], $animals['sheeps'] );
+
+		// Display message about max ids.
+		if ( ! empty( $max_ids ) && is_array( $max_ids ) ) { }
+			echo "The maximum id number for goats is ${max_ids['goats']} and for sheeps is ${max_ids['sheeps']}.\n";
+		}
 
 }
 
