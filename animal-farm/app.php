@@ -80,6 +80,7 @@ class App {
 	 */
 	public function collect_statistics( $animals ) {
 
+		// Bail early if no valid data.
 		if ( empty( $animals ) || ! is_array( $animals['goats'] ) || ! is_array( $animals['sheeps'] ) ) {
 			return false;
 		}

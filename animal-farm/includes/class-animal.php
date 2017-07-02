@@ -42,11 +42,17 @@ class Animal {
 	 */
 	public function save_id_to_storage() {
 
+		// Get our parameters from class properties.
 		$storage = $this->ids_storage;
 		$id = $this->animal_id;
 
 		// Bail early if we have no file name for storage or no valid id.
 		if ( empty( $storage ) || ! is_string( $storage ) || empty( $id ) ) {
+			return false;
+		}
+
+		// Bail if file doesn't exist.
+		if ( ! file_exists( $storage ) ) {
 			return false;
 		}
 
