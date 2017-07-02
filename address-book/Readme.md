@@ -6,15 +6,15 @@ Build a mini address book to showcase your JavaScript and DOM talents.
 
 ## Objectives:
 
-- The app will consist of a <select multiple> html element to list contacts
+* The app will consist of a `<select multiple>` html element to list contacts
 
-- Create input elements so that the user can add a valid 'name' and a 'telephone' value for a new contact and an 'add' button which adds contact to list.
+* Create input elements so that the user can add a valid `name` and a `telephone` value for a new contact and an `add` button which adds contact to list.
 
-- Contact information in each select <option> tag can be displayed in anyway you like
+* Contact information in each select `<option>` tag can be displayed in anyway you like
 
-- Once contacts exist in the multi-select element, the user should be able to select and press a 'delete' button to remove multiple at a time
+* Once contacts exist in the multi-select element, the user should be able to select and press a `delete` button to remove multiple at a time
 
-- Add buttons to sort contacts by name and telephone number
+* Add buttons to sort contacts by name and telephone number
 
 ## Bonus:
 
@@ -44,6 +44,6 @@ Build a mini address book to showcase your JavaScript and DOM talents.
 
 - Field validation, ie: telephone, emails, or not filled
 
-- Use of jQuery - or lack thereof *preferred
+- Use of jQuery - or lack thereof (preferred)
 
 - Respect of JavaScript language, ie: avoid hoisting
