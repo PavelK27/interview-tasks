@@ -4,28 +4,27 @@
 	<title>Address Book</title>
 	<link rel="stylesheet" href="style.css" />
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="script.js" type="text/javascript"></script>
 </head>
 <body>
 
 	<div class="container">
 		<h2>Address Book</h2>
-		<form action="" name="address-book" class="main-form">
-			<select multiple>
-				<option name="no-contacts">No contacts have been added yet!</option>
+		<form action="" method="post" name="address-book" id="main-form" class="main-form">
+			<select multiple id="contacts-list">
+				<option name="no-contacts" id="no-contacts">No contacts have been added yet!</option>
 			</select>
-			<button name="delete">Delete Selected Contact(s)</button>
+			<button name="delete" id="delete-button">Delete Selected Contact(s)</button>
 
-			<fieldset>
-				<label>Add new contact</label>
-				<input type="text" name="first-name" placeholder="First Name" required />
-				<input type="text" name="last-name" placeholder="Last Name" required />
+			<fieldset id="new-contact">
+				<label>New contact</label>
+				<input type="text" name="first_name" placeholder="First Name" required />
+				<input type="text" name="last_name" placeholder="Last Name" required />
 				<input type="text" name="phone" placeholder="Phone" required />
-				<input type="email" name="email" placeholder="Email" />
-				<button name="add">Add Contact</button>
+				<input type="email" name="email" placeholder="Email" required />
+				<button name="add" id="add-button">Add Contact</button>
 			</fieldset>
 		</form>
 	</div>
-
+<script src="script.js" type="text/javascript"></script>
 </body>
 </html>
