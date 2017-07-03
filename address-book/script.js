@@ -60,6 +60,13 @@
 
 		// Append option to select box.
 		document.getElementById( 'contacts-list' ).appendChild( node );
+
+		// Remove "No contacts" option.
+		var no_contacts = document.getElementById( 'no-contacts' );
+
+		if ( typeof( no_contacts ) != 'undefined' && no_contacts != null ) {
+			document.getElementById( 'contacts-list' ).removeChild(no_contacts)
+		}
 	}
 
 	/**
