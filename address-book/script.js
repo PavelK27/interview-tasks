@@ -81,8 +81,12 @@
 	*/
 	contacts.validateForm = function() {
 		var form = document.getElementById( 'main-form' ), inputs = form.getElementsByTagName( 'input' ), input = null, flag = true;
+
+		// Loop through all inputs.
 		for ( var i = 0, len = inputs.length; i < len; i++ ) {
 			input = inputs[i];
+
+			// If input is empty, focus on it and display an alert.
 			if ( ! input.value ) {
 				flag = false;
 				input.focus();
@@ -91,7 +95,7 @@
 			}
 		}
 		return (flag);
-}
+	}
 
 	/**
 	* Bind events for contact list.
