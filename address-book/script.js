@@ -67,6 +67,13 @@
 		if ( typeof( no_contacts ) != 'undefined' && no_contacts != null ) {
 			document.getElementById( 'contacts-list' ).removeChild(no_contacts)
 		}
+
+		// Empty input fields.
+		var inputs = document.getElementsByTagName( 'input' );
+		for ( var i=0; i < inputs.length; i++ ) {
+			inputs[i].value = "";
+		}
+
 	}
 
 	/**
