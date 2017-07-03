@@ -10,6 +10,14 @@
 	<div class="container">
 		<h2>Address Book</h2>
 		<form action="" method="post" name="address-book" id="main-form" class="main-form">
+			<select id="sort" class="sort">
+				<option value="none">Sort by</option>
+				<option value="first_name">First Name</option>
+				<option value="last_name">Last Name</option>
+				<option value="phone">Phone</option>
+				<option value="email">Email</option>
+			</select>
+
 			<select multiple id="contacts-list">
 				<option name="no-contacts" id="no-contacts">No contacts have been added yet!</option>
 			</select>
