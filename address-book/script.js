@@ -77,6 +77,23 @@
 	}
 
 	/**
+	* Validate form - check if all inputs are filled.
+	*/
+	contacts.validateForm = function() {
+		var form = document.getElementById( 'main-form' ), inputs = form.getElementsByTagName( 'input' ), input = null, flag = true;
+		for ( var i = 0, len = inputs.length; i < len; i++ ) {
+			input = inputs[i];
+			if ( ! input.value ) {
+				flag = false;
+				input.focus();
+				alert( 'Please fill in all the required fields.' );
+				break;
+			}
+		}
+		return (flag);
+}
+
+	/**
 	* Bind events for contact list.
 	*/
 	contacts.bindEvents = function() {
@@ -86,6 +103,12 @@
 		// Add a click event to handle the form submit.
 		add_btn.addEventListener( 'click', function(e) {
 			e.preventDefault();
+
+			// Validate form.
+			var is_valid = contacts.validateForm();
+			if ( ! is_valid ) {
+				return false;
+			}
 
 			// Define variables using the form data.
 			var contact_data = {
