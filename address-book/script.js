@@ -5,6 +5,11 @@
 (function(window){
 	'use strict';
 
+		// Declare Contacts object.
+		var contacts = new Object();
+		contacts.list = [];
+		contacts.prev_id = 0;
+
 	/**
 	 * Creates a single contact object.
 	 *
@@ -18,11 +23,9 @@
 		this.last_name = last_name;
 		this.email = email;
 		this.phone = phone;
+		this.id = contacts.prev_id + 1;
+		contacts.prev_id = this.id;
 	}
-
-	// Declare Contacts object.
-	var contacts = new Object();
-	contacts.list = [];
 
 	/**
 	* Adds a new contact to storage and renders it in the view.
