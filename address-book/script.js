@@ -55,6 +55,9 @@
 		// Create a <option> node.
 		var node = document.createElement( 'option' );
 
+		// Add contact id to option.
+		node.setAttribute( 'id', data.id );
+
 		// Create a text node.
 		var textnode = document.createTextNode( data.first_name + ' ' + data.last_name + ', ' + data.phone + ', ' + data.email );
 
@@ -101,6 +104,30 @@
 	}
 
 	/**
+	* Removes contact from contacts list and contacts object.
+	*
+	* @param {array} remove_contacts - the array of contact ids to be removed.
+	*/
+	contacts.remove = function( remove_contacts ) {
+		var all_contacts = contacts.list;
+		var new_contacts = [];
+		var selectbox = document.getElementById( 'contacts-list' );
+
+		// Loop through all contacts.
+		for ( var i = 0; i < all_contacts.length; i++ ) {
+			// If any of them matches from remove_contacts array, delete it.
+			if ( remove_contacts.indexOf( all_contacts[i].id ) === -1 ) {
+					new_contacts.push( all_contacts[i] );
+			}
+		}
+		// Update selectbox options.
+		selectbox.remove( selectbox.selectedIndex );
+
+		// Update contacts list object.
+		contacts.list = new_contacts;
+	}
+
+	/**
 	* Bind events for contact list.
 	*/
 	contacts.bindEvents = function() {
@@ -128,7 +155,27 @@
 			var new_contact = contacts.add( contact_data.first_name, contact_data.last_name, contact_data.email, contact_data.phone );
 		});
 
-	}
+		// Store the delete contact button for later use.
+		var remove_btn = document.getElementById( 'delete-button' );
+
+		// Add a click event for contact removal.
+		remove_btn.addEventListener( 'click', function(e) {
+			e.preventDefault();
+
+			var select_box = this.form.contacts_list;
+			var select_value = [];
+
+			// Loop through all options and get the selected ones.
+			for ( var i = 0; i < select_box.selectedOptions.length; i++) {
+				select_value.push( parseInt( select_box.selectedOptions[i].id ) );
+			}
+
+			if ( select_value ) {
+				contacts.remove( select_value );
+			}
+		});
+
+		}
 
 contacts.bindEvents();
 
