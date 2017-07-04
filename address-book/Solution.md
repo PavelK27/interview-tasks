@@ -1,0 +1,2 @@
+## My solution
+I've tried as much as possible to stay away from jQuery and managed to avoid it completely. Although it's been difficult and caused some repetitive code, as in contacts.sort() method. There also some minor stuff caused by the lack of array helpers (which are available in modern standards of JS, e.g. ES6). If I had more time, I would improve my solution by using localStorage on the user side, so it would allow to keep contacts on the page refresh.
