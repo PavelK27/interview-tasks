@@ -58,6 +58,18 @@
 		// Add contact id to option.
 		node.setAttribute( 'id', data.id );
 
+		// Add contact name attr to option.
+		node.setAttribute( 'data-name', data.first_name );
+
+		// Add contact last name attr to option.
+		node.setAttribute( 'data-last-name', data.last_name );
+
+		// Add contact phone attr to option.
+		node.setAttribute( 'data-phone', data.phone );
+
+		// Add contact email attr to option.
+		node.setAttribute( 'data-email', data.email );
+
 		// Create a text node.
 		var textnode = document.createTextNode( data.first_name + ' ' + data.last_name + ', ' + data.phone + ', ' + data.email );
 
@@ -128,6 +140,61 @@
 	}
 
 	/**
+	* Sorts contacts by attribute.
+	*
+	* @param {string} attr - Attribute name which will be used for sorting.
+	*/
+	contacts.sort = function( attr ) {
+
+		var contacts_select = document.getElementById( 'contacts-list' );
+		var new_options = new Array();
+		
+		// Loop through old options and add them to new options array.
+		for ( var i = 0; i < contacts_select.options.length; i++ ) {
+
+			// Each option key will be an array.
+			new_options[i] = new Array();
+
+			// The first key of this array is used for sorting, so we need to populate it with attr value.
+			new_options[i][0] = contacts_select.options[i].getAttribute(attr);
+
+			// We also need to keep item's attributes.
+			new_options[i]['text'] = contacts_select.options[i].text;
+			new_options[i]['id'] = contacts_select.options[i].getAttribute( 'id' );
+			new_options[i]['name'] = contacts_select.options[i].getAttribute( 'data-name' );
+			new_options[i]['last_name'] = contacts_select.options[i].getAttribute( 'data-last-name' );
+			new_options[i]['phone'] = contacts_select.options[i].getAttribute( 'data-phone' );
+			new_options[i]['email'] = contacts_select.options[i].getAttribute( 'data-email' );
+		}
+
+		// Sort new options, [0] key will be used for sorting.
+		new_options.sort();
+
+		// Empty original selectbox.
+		while (contacts_select.options.length > 0) {
+			contacts_select.options[0] = null;
+		}
+
+		// Populate selectbox with re-arranged options.
+		for ( var i=0; i < new_options.length; i++ ) {
+			// Create a new option node with text attribute value.
+			var option = new Option( new_options[i]['text'] );
+
+			// Add other attributes we wanted to keep.
+			option.setAttribute( 'id', new_options[i]['id'] );
+			option.setAttribute( 'data-name', new_options[i]['name'] );
+			option.setAttribute( 'data-last-name', new_options[i]['last_name'] );
+			option.setAttribute( 'data-phone', new_options[i]['phone'] );
+			option.setAttribute( 'data-email', new_options[i]['email'] );
+
+			// Add new option to the selectbox.
+			contacts_select.options[i] = option;
+		}
+
+		return;
+	}
+
+	/**
 	* Bind events for contact list.
 	*/
 	contacts.bindEvents = function() {
@@ -166,7 +233,7 @@
 			var select_value = [];
 
 			// Loop through all options and get the selected ones.
-			for ( var i = 0; i < select_box.selectedOptions.length; i++) {
+			for ( var i = 0; i < select_box.selectedOptions.length; i++ ) {
 				select_value.push( parseInt( select_box.selectedOptions[i].id ) );
 			}
 
@@ -175,7 +242,15 @@
 			}
 		});
 
-		}
+		// Store the select dropdown for later use.
+		var select_box = document.getElementById( 'sort' );
+
+		// Add a click event to handle the form submit.
+		select_box.addEventListener( 'change', function(e) {
+			contacts.sort( this.value );
+		});
+
+	}
 
 contacts.bindEvents();
 
