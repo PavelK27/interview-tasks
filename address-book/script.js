@@ -6,9 +6,10 @@
 	'use strict';
 
 		// Declare Contacts object.
-		var contacts = new Object();
-		contacts.list = [];
-		contacts.prev_id = 0;
+		var contacts = {
+			list: [],
+			prev_id: 0
+		};
 
 	/**
 	 * Creates a single contact object.
@@ -83,7 +84,7 @@
 		var no_contacts = document.getElementById( 'no-contacts' );
 
 		if ( typeof( no_contacts ) != 'undefined' && no_contacts != null ) {
-			document.getElementById( 'contacts-list' ).removeChild(no_contacts)
+			document.getElementById( 'contacts-list' ).removeChild( no_contacts );
 		}
 
 		// Empty input fields.
@@ -92,7 +93,7 @@
 			inputs[i].value = "";
 		}
 
-	}
+	};
 
 	/**
 	* Validate form - check if all inputs are filled.
@@ -113,7 +114,7 @@
 			}
 		}
 		return (flag);
-	}
+	};
 
 	/**
 	* Removes contact from contacts list and contacts object.
@@ -122,7 +123,7 @@
 	*/
 	contacts.remove = function( remove_contacts ) {
 		var all_contacts = contacts.list;
-		var new_contacts = [];
+		var new_contacts = new Array();
 		var selectbox = document.getElementById( 'contacts-list' );
 
 		// Loop through all contacts.
@@ -132,12 +133,22 @@
 					new_contacts.push( all_contacts[i] );
 			}
 		}
+
 		// Update selectbox options.
-		selectbox.remove( selectbox.selectedIndex );
+		var options = selectbox.options;
+		var k = options.length;
+
+		// Loop through all select options and remove the ones were selected.
+		while ( k-- ) {
+			var current = options[k];
+			if ( current.selected ) {
+				selectbox.remove( k );
+			}
+		}
 
 		// Update contacts list object.
 		contacts.list = new_contacts;
-	}
+	};
 
 	/**
 	* Sorts contacts by attribute.
@@ -176,23 +187,23 @@
 		}
 
 		// Populate selectbox with re-arranged options.
-		for ( var i=0; i < new_options.length; i++ ) {
+		for ( var k = 0; k < new_options.length; k++ ) {
 			// Create a new option node with text attribute value.
-			var option = new Option( new_options[i]['text'] );
+			var option = new Option( new_options[k]['text'] );
 
 			// Add other attributes we wanted to keep.
-			option.setAttribute( 'id', new_options[i]['id'] );
-			option.setAttribute( 'data-name', new_options[i]['name'] );
-			option.setAttribute( 'data-last-name', new_options[i]['last_name'] );
-			option.setAttribute( 'data-phone', new_options[i]['phone'] );
-			option.setAttribute( 'data-email', new_options[i]['email'] );
+			option.setAttribute( 'id', new_options[k]['id'] );
+			option.setAttribute( 'data-name', new_options[k]['name'] );
+			option.setAttribute( 'data-last-name', new_options[k]['last_name'] );
+			option.setAttribute( 'data-phone', new_options[k]['phone'] );
+			option.setAttribute( 'data-email', new_options[k]['email'] );
 
 			// Add new option to the selectbox.
-			contacts_select.options[i] = option;
+			contacts_select.options[k] = option;
 		}
 
 		return;
-	}
+	};
 
 	/**
 	* Bind events for contact list.
@@ -206,10 +217,10 @@
 			e.preventDefault();
 
 			// Validate form.
-			var is_valid = contacts.validateForm();
-			if ( ! is_valid ) {
-				return false;
-			}
+		//	var is_valid = contacts.validateForm();
+			//if ( ! is_valid ) {
+			//	return false;
+			//}
 
 			// Define variables using the form data.
 			var contact_data = {
@@ -217,9 +228,9 @@
 				last_name: this.form.last_name.value,
 				email: this.form.email.value,
 				phone: this.form.phone.value
-			}
+			};
 
-			var new_contact = contacts.add( contact_data.first_name, contact_data.last_name, contact_data.email, contact_data.phone );
+			contacts.add( contact_data.first_name, contact_data.last_name, contact_data.email, contact_data.phone );
 		});
 
 		// Store the delete contact button for later use.
@@ -250,7 +261,7 @@
 			contacts.sort( this.value );
 		});
 
-	}
+	};
 
 contacts.bindEvents();
 
