@@ -217,10 +217,10 @@
 			e.preventDefault();
 
 			// Validate form.
-		//	var is_valid = contacts.validateForm();
-			//if ( ! is_valid ) {
-			//	return false;
-			//}
+			var is_valid = contacts.validateForm();
+			if ( ! is_valid ) {
+				return false;
+			}
 
 			// Define variables using the form data.
 			var contact_data = {
